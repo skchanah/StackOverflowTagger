@@ -1,0 +1,55 @@
+-- select without order to lower the computation expense
+WITH Data AS
+  (
+    SELECT TOP 400000 -- Top/Limit has lower priority than WHERE -- TOP 400000 to return 50000 results
+    Title 
+    ,Body
+    ,CASE -- coalescing Python 
+      -- All three variation exists
+      WHEN Tags like '%Python%Python3%Python3%' THEN REPLACE(REPLACE(Tags, '<Python3>', ''), '<Python3.x>', '')
+      -- Only two variation exists
+      WHEN Tags like '%Python3%Python3%' THEN REPLACE(REPLACE(Tags, '<Python3>', '<Python>'), '<Python3.x>', '')
+      WHEN Tags like '%Python%Python%' THEN REPLACE(REPLACE(Tags, '<Python3>', ''), '<Python3.x>', '')
+      -- else only either of variation
+      ELSE REPLACE(REPLACE(Tags, '<Python3>', '<Python>'), '<Python3.x>', '<Python>') 
+      END AS Tags
+    ,Id
+    ,Score
+    ,ViewCount
+    ,FavoriteCount
+    ,AnswerCount
+    FROM Posts
+    WHERE (AnswerCount >= 1) 
+  )
+  
+SELECT 
+  Title 
+  ,Data2.Body
+  ,Data2.Tags
+  ,Data2.Id
+  ,Data2.Score
+  ,Data2.ViewCount
+  ,Data2.FavoriteCount
+  ,Data2.AnswerCount
+  ,Data2.TagCount
+
+FROM 
+(Select 
+  Title 
+  ,Body
+  ,Tags
+  ,Id
+  ,Score
+  ,ViewCount
+  ,FavoriteCount
+  ,AnswerCount
+  ,LEN(Tags) - LEN(REPLACE(Tags, '<', '')) AS TagCount
+  FROM Data) AS Data2
+  
+Where Data2.TagCount >= 5
+ORDER BY Data2.FavoriteCount DESC, Data2.ViewCount DESC; 
+ /* ORDER here instead of in Data query is suboptimal 
+ (i.e. we now select & filter through a random subset of data before ORDER)  
+ However Order in Main Data Query would be too expensive for this webAPI.
+ and since we only want to sample a training data for NLP, this randomness it acceptable  
+ */
