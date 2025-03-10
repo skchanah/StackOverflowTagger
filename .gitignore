@@ -1,3 +1,4 @@
+.gitignore
 tk.txt
 /stackoverflow_tagger_bert
 /stackoverflow_tagger_modernbert

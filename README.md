@@ -21,6 +21,6 @@ This repository includes:
 ## How to use it:
 ```
 cd the/directory/to/this/folder
-./main.py --query"your questions"
+python ./main.py --query "your_questions"
  
 ```
