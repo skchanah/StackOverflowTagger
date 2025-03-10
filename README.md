@@ -4,9 +4,9 @@
 This is a toy model using BERT-base to predict tags for a StackOverflow question. Ideally ModernBert is a better option for the task but due to local setup constraints, BERT-base is used.
 
 ## Why BERT over n-shot GPT for this task:
-- High Task Specificity: The classification heads are finetuned over specific labels, reducing risk of hallucination 
-- High Computationally Efficiency (for discriminative tasks): BERT-base has 110M parameters, while earlier GPT, e.g. LLaMA1, has a minimum of 1B parameters. SOTA GPT models can reach parameter size of at least 7B
-- Fewer Overheads: do not require prompting skill
+- High Task Specificity: The classification heads are finetuned over specific labels, reducing risk of hallucination.
+- High Computational Efficiency (for discriminative tasks): BERT-base has 110M parameters, while earlier GPT, e.g. LLaMA1, has a minimum of 1B parameters. SOTA GPT models can reach parameter size of at least 7B.
+- Fewer Overheads: do not require prompting skills.
 
 ## Cons of BERT over GPT for this task:
 Finetuning is required for BERT(/ModernBert); while SOTA GPT can perform n-shot predictions without finetuning.
