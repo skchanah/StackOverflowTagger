@@ -1,7 +1,7 @@
 import argparse
 from transformers import pipeline
 
-def my_function(query):
+def endpt(query):
     option = str(query).lower()
     clf = pipeline("text-classification",model="eugeneskchan/stackoverflow_tagger_bert")
     result = clf(query, top_k=6)
@@ -15,7 +15,7 @@ def main():
     args = parser.parse_args()
     try:
         #print(args.query)
-        my_function(args.query)
+        endpt(args.query)
     except AttributeError:
         print("Please enter a single line question.")
 
