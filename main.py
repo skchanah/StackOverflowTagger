@@ -14,7 +14,6 @@ def main():
     
     args = parser.parse_args()
     try:
-        #print(args.query)
         endpt(args.query)
     except AttributeError:
         print("Please enter a single line question.")
