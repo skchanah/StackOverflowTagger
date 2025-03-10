@@ -1,7 +1,7 @@
 # StackOverflowTagger
 
 ## Introduction:
-This is a toy model using BERT-base to predict tags for a StackOverflow question. Ideally ModernBert is a better option for the task but due to local setup constraints, BERT-base
+This is a toy model using BERT-base to predict tags for a StackOverflow question. Ideally ModernBert is a better option for the task but due to local setup constraints, BERT-base is used.
 
 ## Why BERT over n-shot GPT for this task:
 - High Task Specificity: The classification heads are finetuned over specific labels, reducing risk of hallucination 
