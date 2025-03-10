@@ -15,7 +15,7 @@ Finetuning is required for BERT(/ModernBert); while SOTA GPT can perform n-shot 
 This repository includes:
 - main.py: Endpoint for prediction
 - SQL.txt: The SQL query for the dataset
-- requirements.py: library requirements for main.py
+- requirements.py: Library requirements for main.py
 - StackOverflowTagger.ipynb: Training workbook and eval statistics
 
 ## How to use it:
